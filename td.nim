@@ -61,8 +61,11 @@ proc searchFile(filePath: string): void =
 
 # Start of Logic
 let numParams = paramCount()
+echo paramCount()
+for i in 0..paramCount():
+    echo paramStr(i)
 
-if numParams > 1:
+if numParams >= 1:
     for i in 0..paramCount():
         searchFile(paramStr(i))
 

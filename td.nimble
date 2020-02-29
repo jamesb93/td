@@ -1,4 +1,4 @@
-version       = "0.1.0"
+version       = "1.0.0"
 author        = "James Bradbury"
 description   = "find TODO in code"
 license       = "MIT"

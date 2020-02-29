@@ -39,25 +39,23 @@ let validExtensions = [
 ]
 
 proc searchFile(filePath: string): void =
-    var hasTodo = false
-    var hasFixme = false
-    var pathParts = filePath.splitFile
-    if pathParts[2] in validExtensions:
+    var printedName = false
+    let pathParts = filePath.splitFile
+    let fileName = filePath.splitPath.tail
+    if pathParts.ext in validExtensions:
         var f = open(filePath)
         var lineCounter = 1
         var line: string
     
         while f.readLine(line):
             if "TODO" in line:
-                hasTodo = true
-                if hasTodo == true:
-                    echo fmt"{pathParts[1]}{pathParts[2]}".bold.underline
+                if printedName == false: echo fmt"{fileName}".bold.underline
                 echo fmt"{lineCounter.intToStr().fgRed()} | {line.strip().fgYellow()}"
+                printedName = true
             if "FIXME" in line:
-                hasFixme = true
-                if hasFixme == true:
-                    echo fmt"{pathParts[1]}{pathParts[2]}".bold.underline
+                if printedName == false: echo fmt"{fileName}".bold.underline
                 echo fmt"{lineCounter.intToStr().fgBlue()} | {line.strip().fgYellow()}"
+                printedName = true
 
             lineCounter += 1
 

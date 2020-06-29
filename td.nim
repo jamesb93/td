@@ -49,11 +49,13 @@ proc searchFile(filePath: string): void =
     
         while f.readLine(line):
             if "TODO" in line:
-                if printedName == false: echo fmt"{fileName}".bold.underline
+                if printedName == false: 
+                    echo fmt"{filePath}".bold.underline
                 echo fmt"{lineCounter.intToStr().fgRed()} | {line.strip().fgYellow()}"
                 printedName = true
             if "FIXME" in line:
-                if printedName == false: echo fmt"{fileName}".bold.underline
+                if printedName == false: 
+                    echo fmt"{filePath}".bold.underline
                 echo fmt"{lineCounter.intToStr().fgBlue()} | {line.strip().fgYellow()}"
                 printedName = true
 
